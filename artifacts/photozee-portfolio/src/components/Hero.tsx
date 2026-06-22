@@ -26,7 +26,7 @@ export default function Hero() {
       {/* Background Image & Overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center z-0"
-        style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1920&q=80")' }}
+        style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1519225421980-716e6f8cce58?auto=format&fit=crop&w=1920&q=80")' }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background/90"></div>
       </div>
