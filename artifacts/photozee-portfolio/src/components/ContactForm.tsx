@@ -38,42 +38,44 @@ export default function ContactForm() {
     },
   });
 
+agent-import-to-top-level-3c0a
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
+
   
+ main
 
-const onSubmit = async (data: FormValues) => {
-  setIsSubmitting(true);
+    try {
+      await emailjs.send(
+        "service_z4ku08k",
+        "template_opsotc4",
+        {
+          from_name: data.name,
+          from_email: data.email,
+          phone: data.phone,
+          event_type: data.eventType,
+          event_date: data.eventDate,
+          message: data.message,
+        },
+        "LlDPB-_fH6UDxt1ei"
+      );
 
-  try {
-    await emailjs.send(
-     "service_z4ku08k",
-      "template_opsotc4",
-      {
-        from_name: data.name,
-        from_email: data.email,
-        phone: data.phone,
-        event_type: data.eventType,
-        event_date: data.eventDate,
-        message: data.message,
-      },
-      "LlDPB-_fH6UDxt1ei"
-    );
+      toast({
+        title: "Success",
+        description: "Inquiry sent successfully!",
+      });
 
-    toast({
-      title: "Success",
-      description: "Inquiry sent successfully!",
-    });
+      form.reset();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send inquiry.",
+        variant: "destructive",
+      });
+    }
 
-    form.reset();
-  } catch (error) {
-    toast({
-      title: "Error",
-      description: "Failed to send inquiry.",
-      variant: "destructive",
-    });
-  }
-
-  setIsSubmitting(false);
-};
+    setIsSubmitting(false);
+  };
   return (
     <div className="bg-card border border-border p-8 rounded-lg shadow-xl">
       <h3 className="font-serif text-3xl font-bold text-foreground mb-6">Send an Inquiry</h3>

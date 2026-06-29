@@ -1,0 +1,3 @@
+[build]
+command = "pnpm --filter @workspace/photozee-portfolio... run build"
+publish = "dist/public"
