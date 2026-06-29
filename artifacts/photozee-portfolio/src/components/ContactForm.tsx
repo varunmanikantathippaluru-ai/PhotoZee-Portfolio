@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Loader2 } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -37,42 +38,40 @@ export default function ContactForm() {
     },
   });
 
-  import emailjs from "@emailjs/browser";
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
 
-const onSubmit = async (data: FormValues) => {
-  setIsSubmitting(true);
+    try {
+      await emailjs.send(
+        "service_z4ku08k",
+        "template_opsotc4",
+        {
+          from_name: data.name,
+          from_email: data.email,
+          phone: data.phone,
+          event_type: data.eventType,
+          event_date: data.eventDate,
+          message: data.message,
+        },
+        "LlDPB-_fH6UDxt1ei"
+      );
 
-  try {
-    await emailjs.send(
-     "service_z4ku08k",
-      "template_opsotc4",
-      {
-        from_name: data.name,
-        from_email: data.email,
-        phone: data.phone,
-        event_type: data.eventType,
-        event_date: data.eventDate,
-        message: data.message,
-      },
-      "LlDPB-_fH6UDxt1ei"
-    );
+      toast({
+        title: "Success",
+        description: "Inquiry sent successfully!",
+      });
 
-    toast({
-      title: "Success",
-      description: "Inquiry sent successfully!",
-    });
+      form.reset();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send inquiry.",
+        variant: "destructive",
+      });
+    }
 
-    form.reset();
-  } catch (error) {
-    toast({
-      title: "Error",
-      description: "Failed to send inquiry.",
-      variant: "destructive",
-    });
-  }
-
-  setIsSubmitting(false);
-};
+    setIsSubmitting(false);
+  };
   return (
     <div className="bg-card border border-border p-8 rounded-lg shadow-xl">
       <h3 className="font-serif text-3xl font-bold text-foreground mb-6">Send an Inquiry</h3>
