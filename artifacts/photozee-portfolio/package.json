@@ -10,7 +10,6 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "devDependencies": {
-    "@emailjs/browser": "^3.2.0",
     "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "^1.2.4",
